@@ -6,6 +6,7 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title class="text-weight-bold">
           <span class="gt-sm">{{ $route.name }}</span>
+
           <!--todo: change to OF logo-->
           <q-icon
             class="q-pa-sm lt-md absolute-center"
