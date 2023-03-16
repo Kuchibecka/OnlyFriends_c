@@ -161,9 +161,15 @@
         height="500px"
         class="q-ma-md text-black shadow-1 rounded-borders"
       >
-        <q-carousel-slide name="style" class="column no-wrap flex-center">
-          <q-icon name="home" size="56px" />
-          <div class="q-mt-md text-center text-black">{{lorem}}</div>
+        <q-carousel-slide name="style" class="column no-wrap">
+<!-- todo: допилить карусель с рекомендациями          -->
+          <q-card class="my-card">
+            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+              <div class="absolute-bottom text-h6">
+                Title
+              </div>
+            </q-img>
+          </q-card>
         </q-carousel-slide>
         <q-carousel-slide name="tv" class="column no-wrap flex-center">
           <q-icon name="search" size="56px" />
