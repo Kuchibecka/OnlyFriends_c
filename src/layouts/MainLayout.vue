@@ -157,19 +157,63 @@
         control-color="grey-8"
         navigation
         padding
-        arrows
-        height="500px"
+        height="600px"
         class="q-ma-md text-black shadow-1 rounded-borders"
       >
         <q-carousel-slide name="style" class="column no-wrap">
-<!-- todo: допилить карусель с рекомендациями          -->
-          <q-card class="my-card">
-            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
-              <div class="absolute-bottom text-h6">
-                Title
-              </div>
-            </q-img>
-          </q-card>
+          <!-- todo: допилить карусель с рекомендациями          -->
+          <div class="col">
+            <q-card class="my-card">
+              <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+                <div class="absolute-bottom">
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </div>
+              </q-img>
+            </q-card>
+          </div>
+          <div class="col">
+            <q-card class="my-card">
+              <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+                <div class="absolute-bottom">
+                  <div class="row">
+                    <div class="col-8">
+                      <q-avatar size="md-md">
+                        <!-- todo: заменить аватар и содержание поста            -->
+                        <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                      </q-avatar>
+                    </div>
+                    <div class="col-4">
+                      <strong>Author's name</strong>
+                      <span class="text q-ml-xs"> @author_tag </span>
+                    </div>
+                  </div>
+                </div>
+              </q-img>
+            </q-card>
+          </div>
+          <div class="col full-width">
+            <q-card class="my-card">
+              <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+                <div class="row">
+                  <div class="col-3">
+                    <q-avatar size="md-md">
+                      <!-- todo: заменить аватар и содержание поста            -->
+                      <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                    </q-avatar>
+                  </div>
+                  <div class="col-8">
+                    <strong>Author's name</strong>
+                    <span class="text q-ml-xs"> @author_tag </span>
+                  </div>
+                  <div>
+                    sex
+                  </div>
+                </div>
+              </q-img>
+            </q-card>
+          </div>
+
         </q-carousel-slide>
         <q-carousel-slide name="tv" class="column no-wrap flex-center">
           <q-icon name="search" size="56px" />
