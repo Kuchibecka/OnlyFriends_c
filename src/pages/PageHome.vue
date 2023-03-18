@@ -40,7 +40,7 @@
         enter-active-class="animated fadeInDown"
         leave-active-class="animated fadeOutDown"
       >
-        <q-item class="q-py-md" v-for="post in posts" :key="post.date">
+        <q-item class="q-py-md" v-for="post in posts" :key="post.id">
           <q-item-section avatar top>
             <q-avatar size="xl">
               <!-- todo: заменить аватар и содержание поста            -->
@@ -75,149 +75,156 @@
       </transition-group>
     </q-list>
   </q-page>
+
+  <q-btn @click="looog">
+    console.log
+  </q-btn>
 </template>
 
-<script>
+<!--<script>
 import { formatDistance } from "date-fns";
 import { defineComponent } from "vue";
+import db from "src/boot/firebase";
+import {
+  collection,
+  query,
+  onSnapshot,
+  orderBy,
+  addDoc,
+  deleteDoc,
+  doc
+} from "firebase/firestore";
 
 export default defineComponent({
   name: "PageHome",
   data() {
     return {
       newPostData: "",
-      posts: [
-        {
-          text: "Математи́ческий ана́лиз (классический математический анализ) —",
-          date: 1678900010000,
-        },
-        {
-          text: "совокупность разделов математики, соответствующих историческому",
-          date: 1678900000600,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678908000000,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900043000,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900005500,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900343000,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900002250,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900055500,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900333000,
-        },
-        {
-          text:
-            "Математи́ческий ана́лиз (классический математический анализ) —" +
-            " совокупность разделов математики, соответствующих историческому " +
-            "разделу под наименованием «анализ бесконечно малых», " +
-            "объединяет дифференциальное и интегральное исчисления",
-          date: 1678900023400,
-        },
-        {
-          text:
-            "На классическом математическом анализе основывается " +
-            "современный анализ, который рассматривается как одно из трёх" +
-            " основных направлений математики (наряду с алгеброй и геометрией)." +
-            " При этом термин «математический анализ» в классическом понимании" +
-            " используется, в основном, в учебных программах и материалах[1]." +
-            " В англо-американской традиции классическому математическому" +
-            " анализу соответствуют программы курсов с наименованием" +
-            " «исчисление» (англ. Calculus). ",
-          date: 1678903146115,
-        },
-        {
-          text:
-            "Предшественниками математического анализа были античный метод" +
-            " исчерпывания и метод неделимых. Все три направления, включая" +
-            " анализ, роднит общая исходная идея: разложение на бесконечно " +
-            "малые элементы, природа которых, впрочем, представлялась авторам " +
-            "идеи довольно туманной. Алгебраический подход (исчисление " +
-            "бесконечно малых) начинает появляться у Валлиса, Джеймса Грегори" +
-            " и Барроу. В полной мере новое исчисление как систему создал" +
-            " Ньютон, который, однако, долгое время не публиковал свои " +
-            "открытия[2]. ",
-          date: 1678993144115,
-        },
-        {
-          text:
-            "Официальной датой рождения дифференциального исчисления можно " +
-            "считать май 1684 года, когда Лейбниц опубликовал первую статью " +
-            "«Новый метод максимумов и минимумов…»[3]. Эта статья в сжатой и" +
-            " малодоступной форме излагала принципы нового метода, названного" +
-            " дифференциальным исчислением. ",
-          date: 420555,
-        },
-      ],
+      posts: [],
     };
   },
   methods: {
     howLongAgo(date) {
-      return formatDistance(date, new Date(), { addSuffix: true });
+      // docs: https://date-fns.org/v2.29.3/docs/Getting-Started
+      return formatDistance(Number(date), new Date(), { addSuffix: true });
     },
-    addNewPost() {
+    async addNewPost() {
       let newPost = {
         text: this.newPostData,
         date: Date.now(),
       };
-      this.posts.unshift(newPost);
+      const docRef = await addDoc(collection(db, "posts"), newPost);
+      console.log(docRef.id);
+
+      // this.posts.unshift(newPost);
       this.newPostData = "";
     },
-    deletePost(post) {
+    async deletePost(post) {
       // console.log('Delete post: ', post)
       // todo: исправить на идентификатор поста
-      let idToDelete = post.date;
-      let index = this.posts.findIndex((post) => post.date === idToDelete);
-      console.log(index);
-      this.posts.splice(index, 1);
+      await deleteDoc(doc(db, "posts", post.id));
     },
   },
+  mounted() {
+    const q = query(collection(db, "posts"), orderBy("date"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        let postChange = change.doc.data();
+        postChange.id = change.doc.id;
+        if (change.type === "added") {
+          // console.log("New post: ", postChange);
+          this.posts.unshift(postChange);
+        }
+        if (change.type === "modified") {
+          console.log("Modified post: ", postChange);
+        }
+        if (change.type === "removed") {
+          // console.log("Removed post: ", postChange);
+          let index = this.posts.findIndex(post => post.id === postChange.id);
+          this.posts.splice(index, 1);
+        }
+      });
+    });
+
+    // eslint-disable-next-line no-constant-condition
+    if (false) {
+      unsubscribe();
+    }
+  },
 });
+</script>-->
+
+<script setup>
+import { formatDistance } from "date-fns";
+import { onMounted, ref } from "vue";
+import db from "src/boot/firebase";
+import {
+  collection,
+  query,
+  onSnapshot,
+  orderBy,
+  addDoc,
+  deleteDoc,
+  doc
+} from "firebase/firestore";
+
+// eslint-disable-next-line no-unused-vars
+const name = "PageHome";
+let newPostData = ref('')
+let posts = ref([])
+
+function howLongAgo(date) {
+  // docs: https://date-fns.org/v2.29.3/docs/Getting-Started
+  return formatDistance(Number(date), new Date(), { addSuffix: true });
+}
+
+async function addNewPost() {
+  let newPost = {
+    text: newPostData.value,
+    date: Date.now(),
+  };
+  const docRef = await addDoc(collection(db, "posts"), newPost);
+  console.log(docRef.id);
+
+  newPostData.value = "";
+}
+
+async function deletePost(post) {
+  // console.log('Delete post: ', post)
+  // todo: исправить на идентификатор поста
+  await deleteDoc(doc(db, "posts", post.id));
+}
+
+function looog() {
+  console.log("posts: ", posts.value);
+  console.log("newPostData: ", newPostData.value);
+}
+
+onMounted(() => {
+  console.log("posts: ", posts.value);
+  console.log("newPostData: ", newPostData.value);
+  const q = query(collection(db, "posts"), orderBy("date"));
+  // eslint-disable-next-line no-unused-vars
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      let postChange = change.doc.data();
+      postChange.id = change.doc.id;
+      if (change.type === "added") {
+        console.log("New post: ", postChange);
+        posts.value.unshift(postChange);
+      }
+      if (change.type === "modified") {
+        console.log("Modified post: ", postChange);
+      }
+      if (change.type === "removed") {
+        // console.log("Removed post: ", postChange);
+        let index = posts.value.findIndex(post => post.id === postChange.id);
+        posts.value.splice(index, 1);
+      }
+    });
+  });
+})
+
 </script>
 
 <style lang="sass">

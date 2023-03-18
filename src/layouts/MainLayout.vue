@@ -206,9 +206,6 @@
                     <strong>Author's name</strong>
                     <span class="text q-ml-xs"> @author_tag </span>
                   </div>
-                  <div>
-                    sex
-                  </div>
                 </div>
               </q-img>
             </q-card>
