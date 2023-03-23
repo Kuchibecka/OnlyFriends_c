@@ -14,7 +14,6 @@
           <!--    todo: whatis :dense="dense" param    -->
           <template v-slot:before>
             <q-avatar size="xl">
-              <!--todo: заменить на аватар пользователя     -->
               <img src="https://cdn.quasar.dev/img/avatar5.jpg" />
             </q-avatar>
           </template>
@@ -37,8 +36,6 @@
 <!--    <KeepAlive>-->
     <PostList v-model="posts"/>
 <!--    </KeepAlive>-->
-
-
 
   </q-page>
 </template>
