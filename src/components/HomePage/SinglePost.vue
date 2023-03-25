@@ -1,14 +1,18 @@
 <template>
   <q-item-section avatar top>
     <q-avatar size="xl">
-      <img src="https://cdn.quasar.dev/img/avatar2.jpg"/>
+      <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
     </q-avatar>
   </q-item-section>
   <q-item-section>
     <q-item-label class="text-subtitle1">
-      <strong>Author's name</strong>
-      <span class="text-grey-7 q-ml-xs"> @author_tag </span>
-      <br class="lt-md"/>
+      <strong>
+        {{ modelValue.author_name }}
+      </strong>
+      <span class="text-grey-7 q-ml-xs">
+        {{ "@" + modelValue.author_tag }}
+      </span>
+      <br class="lt-md" />
       &bull; {{ howLongAgo(modelValue.date) }}
     </q-item-label>
     <q-item-label class="post-text text-body1 q-pt-xs">
@@ -23,8 +27,8 @@
         size="sm"
         :icon="modelValue.liked ? 'fas fa-heart' : 'far fa-heart'"
       />
-      <q-btn flat round color="grey" size="sm" icon="reply"/>
-      <q-btn flat round color="grey" size="sm" icon="comment"/>
+      <q-btn flat round color="grey" size="sm" icon="reply" />
+      <q-btn flat round color="grey" size="sm" icon="comment" />
       <q-btn
         flat
         round
@@ -38,12 +42,12 @@
 </template>
 
 <script setup>
-import {formatDistance} from "date-fns";
-import {deleteDoc, doc, updateDoc} from "firebase/firestore";
+import { formatDistance } from "date-fns";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import db from "boot/firebase";
 
 defineProps({
-  modelValue: Array,
+  modelValue: Object,
 });
 
 function howLongAgo(date) {
@@ -64,6 +68,7 @@ async function toggleLike(post) {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass">
+.post-text
+  white-space: pre-line
 </style>

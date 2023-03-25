@@ -28,7 +28,6 @@
       bordered
     >
       <q-toolbar-title class="text-weight-bold">
-        <!--todo: change to OF logo-->
         <q-icon
           class="q-pa-sm"
           size="lg"
@@ -38,99 +37,7 @@
         OnlyFriends
       </q-toolbar-title>
 
-      <div class="q-pa-md" style="max-width: 350px">
-        <q-list>
-          <q-item to="/" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="home" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6 text-weight-bold"
-              >Home
-            </q-item-section>
-          </q-item>
-
-          <q-item to="/notifications" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="notifications" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">Notifications</q-item-section>
-          </q-item>
-
-          <q-item to="/messages" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="message" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">Messages</q-item-section>
-          </q-item>
-
-          <q-item to="/bookmarks" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="bookmark" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">Bookmarks</q-item-section>
-          </q-item>
-
-          <q-item to="/lists" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="list" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">Lists</q-item-section>
-          </q-item>
-
-          <q-item to="/subscriptions" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="loyalty" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">Subscriptions</q-item-section>
-          </q-item>
-
-          <q-item to="/credit_card" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="credit_card" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">Add card</q-item-section>
-          </q-item>
-
-          <q-item to="/profile" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="account_circle" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">My profile</q-item-section>
-          </q-item>
-
-          <q-item to="/more" clickable v-ripple exact>
-            <q-item-section avatar>
-              <q-icon name="more_horiz" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">More</q-item-section>
-          </q-item>
-
-          <div class="q-pt-xl" />
-
-          <q-item
-            to="/new_post"
-            clickable
-            v-ripple
-            class="bg-primary text-white"
-            style="border-radius: 30px"
-          >
-            <q-item-section avatar>
-              <q-icon color="white" name="add" size="md" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">NEW POST</q-item-section>
-          </q-item>
-        </q-list>
-      </div>
+      <PageSelector />
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
@@ -147,7 +54,6 @@
         </template>
       </q-input>
 
-      <!-- todo: исправить карусель, добавить карточки с рекомендациями внутрь  -->
       <q-carousel
         v-model="slide"
         transition-prev="scale"
@@ -210,19 +116,18 @@
               </q-img>
             </q-card>
           </div>
-
         </q-carousel-slide>
         <q-carousel-slide name="tv" class="column no-wrap flex-center">
           <q-icon name="search" size="56px" />
-          <div class="q-mt-md text-center">{{lorem}}</div>
+          <div class="q-mt-md text-center">{{ lorem }}</div>
         </q-carousel-slide>
         <q-carousel-slide name="layers" class="column no-wrap flex-center">
           <q-icon name="home" size="56px" />
-          <div class="q-mt-md text-center">{{lorem}}</div>
+          <div class="q-mt-md text-center">{{ lorem }}</div>
         </q-carousel-slide>
         <q-carousel-slide name="map" class="column no-wrap flex-center">
           <q-icon name="search" size="56px" />
-          <div class="q-mt-md text-center">{{lorem}}</div>
+          <div class="q-mt-md text-center">{{ lorem }}</div>
         </q-carousel-slide>
       </q-carousel>
     </q-drawer>
@@ -246,8 +151,10 @@
 
 <script>
 import { ref } from "vue";
+import PageSelector from "components/LeftDrawer/PageSelector.vue";
 
 export default {
+  components: { PageSelector },
   setup() {
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
