@@ -27,20 +27,11 @@
       side="left"
       bordered
     >
-      <q-toolbar-title class="text-weight-bold">
-        <q-icon
-          class="q-pa-sm"
-          size="lg"
-          color="primary"
-          name="fa-solid fa-fan"
-        />
-        OnlyFriends
-      </q-toolbar-title>
-
+      <DrawerTitle :icon="'fa-solid fa-fan'" :title="'OnlyFriends'" />
       <PageSelector />
     </q-drawer>
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+    <q-drawer show-if-above side="right" bordered>
       <!-- right drawer content -->
       <q-input
         class="q-ma-md"
@@ -135,44 +126,20 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
-          <div>Title</div>
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-footer>
   </q-layout>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import PageSelector from "components/LeftDrawer/PageSelector.vue";
+import DrawerTitle from "components/LeftDrawer/DrawerTitle.vue";
 
-export default {
-  components: { PageSelector },
-  setup() {
-    const leftDrawerOpen = ref(false);
-    const rightDrawerOpen = ref(false);
+let leftDrawerOpen = ref(false);
+const lorem =
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.";
+const slide = ref("style");
 
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-
-      rightDrawerOpen,
-      toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
-      },
-      slide: ref("style"),
-      lorem:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.",
-    };
-  },
-};
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
 </script>
